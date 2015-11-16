@@ -18,7 +18,9 @@ export default class TodoMain extends Component {
 
     return {
       tasksReady: tasksHandler.ready(),
-      tasks: Tasks.find().fetch(),
+      tasks: Tasks.find({}, {
+        sort: { createdAt: -1 }
+      }).fetch(),
     };
   }
 

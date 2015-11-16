@@ -20,3 +20,8 @@ reactrouter:react-router-ssr
 react-runtime
 react-meteor-data
 check
+sanjo:jasmine
+velocity:console-reporter
+accounts-password
+accounts-ui
+thereactivestack:blazetoreact

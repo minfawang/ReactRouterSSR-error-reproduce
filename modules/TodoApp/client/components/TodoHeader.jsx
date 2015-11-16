@@ -18,7 +18,7 @@ export default class TodoHeader extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-        <input ref="input" type="text" />
+        <input ref="input" name="taskInput" type="text" />
       </form>
     );
   }
