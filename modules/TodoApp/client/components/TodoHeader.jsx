@@ -4,19 +4,15 @@ export default class TodoHeader extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const form = e.currentTarget;
     const text = this.refs.input.value.trim();
     if (!! text)
       Meteor.call('/tasks/add', text, err => {
         if (! err)
-          this.resetForm();
+          form.reset();
         else
           alert(err);
       });
-  }
-
-  resetForm() {
-    const form = this.refs.form;
-    form.reset();
   }
 
   render() {

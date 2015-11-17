@@ -19,16 +19,6 @@ describe('TodoHeader', () => {
     expect(Meteor.call).toHaveBeenCalledWith('/tasks/add', task, jasmine.any(Function));
   });
 
-  it('should clear the form when calling "resetForm"', () => {
-    const formEl = TestUtils.renderIntoDocument(
-      <TodoHeader />
-    );
-
-    formEl.refs.input.value = 'test task';
-    formEl.resetForm();
-    expect(formEl.refs.input.value).toEqual('');
-  });
-
   it ('should reset the form if the the method "/tasks/add" succeeds', () => {
     const testTask = 'My new task';
     spyOn(Meteor, 'userId').and.returnValue('111');
@@ -47,6 +37,32 @@ describe('TodoHeader', () => {
     TestUtils.Simulate.submit(formEl, { target: formEl });
     expect(Meteor.call).toHaveBeenCalled();
     expect(formEl.taskInput.value).toEqual('');
+  });
+
+
+  it ('should send alert and not reset the form if the the method "/tasks/add" fails', () => {
+    const testTask = 'My new task';
+    const err = 'The method fails';
+
+    spyOn(window, 'alert');
+    spyOn(Meteor, 'userId').and.returnValue('111');
+    spyOn(Meteor, 'call').and.callFake(function (methodName, task, callback) {
+      expect(methodName).toEqual('/tasks/add');
+      expect(task).toEqual(testTask);
+      callback(err);
+    });
+
+    const root = TestUtils.renderIntoDocument(
+      <TodoHeader />
+    );
+
+    const formEl = TestUtils.findRenderedDOMComponentWithTag(root, 'form');
+    formEl.taskInput.value = testTask;
+    TestUtils.Simulate.submit(formEl, { target: formEl });
+
+    expect(Meteor.call).toHaveBeenCalled();
+    expect(formEl.taskInput.value).toEqual(testTask);
+    expect(window.alert).toHaveBeenCalled();
   });
 
 });
