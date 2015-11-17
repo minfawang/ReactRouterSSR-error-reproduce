@@ -7,6 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 
   require('../client/routes');
 } else {
+  console.dir(WebpackStats);
   // Add fixtures required for integration tests
   const context = require.context('../../modules', true, /\/server\/(.*)\/integration\/(.*)\-fixtures\.jsx?$/);
   context.keys().forEach(context);

@@ -1,6 +1,5 @@
 import './routes';
 import 'TodoApp/methods';
-console.log('Log from client/entry.js');
 
 
 if (process.env.NODE_ENV !== 'production') {

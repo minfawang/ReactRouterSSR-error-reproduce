@@ -21,7 +21,7 @@ react-runtime
 react-meteor-data
 check
 sanjo:jasmine
-velocity:console-reporter
 accounts-password
 accounts-ui
 thereactivestack:blazetoreact
+velocity:html-reporter
