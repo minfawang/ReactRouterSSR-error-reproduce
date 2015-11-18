@@ -1,5 +1,12 @@
 # ReactRouterSSR-error-reproduce
 
+## Note
+
+This error has been fixed since `reactrouter:react-router-ssr` version `0.3.5`.
+
+
+## Original Error
+
 This repo is almost identical to [kickstart-hugeapp](https://github.com/thereactivestack/kickstart-hugeapp) with minor differences of styling and naming.
 
 When running the application in production mode (with command `meteor --production`), and go to browser to visit `localhost:3000`. There is the error message printed to the console:
